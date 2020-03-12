@@ -8,7 +8,7 @@ html {
 /* example 1 */
 .outer-div {
   background-color: grey;
-  width: 300px;
+  width: 500px;
   height: 100px;
   text-align: center;  /* horizontal allign */
 }
@@ -26,17 +26,16 @@ html {
 /* example 2 */
 .outer-div2 {
   background-color: rgb(201, 188, 188);
-  width: 300px;
+  width: 500px;
   height: 100px;
   display: flex;
   align-items: center; /* vertical allign */
-  justify-content: center
+  justify-content: space-around; /* works only for non flex children */
 }
 .inner-text2 {
   flex: 1 1 auto;
   font-size:  30px;
-  text-align: center; 
-  /* horizontal allign relate to span */
+  text-align: center; /* horizontal allign relate to span */
 }
 .inner-text-x2 {
   flex: 1 1 auto;
