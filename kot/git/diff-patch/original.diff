@@ -1,0 +1,5 @@
+--- original.js	2023-10-10 15:37:53.234455200 +0300
++++ original_patched.js	2023-10-10 15:37:50.902953700 +0300
+@@ -1 +1,2 @@
+ console.log('Original');
++console.log('Patched');

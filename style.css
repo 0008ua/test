@@ -1,0 +1,89 @@
+html, body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* example 1 */
+.outer-div {
+  background-color: grey;
+  width: 500px;
+  height: 100px;
+  text-align: center; /* horizontal allign */
+}
+
+/* vertical allign - only text to sibling text, not to outer div*/
+.inner-text {
+  font-size: 30px;
+  vertical-align: middle;
+}
+.inner-text-x {
+  vertical-align: middle;
+}
+/* end of example 1 */
+
+/* example 2 */
+.outer-div2 {
+  background-color: rgb(201, 188, 188);
+  width: 500px;
+  height: 100px;
+  display: flex;
+  align-items: center; /* vertical allign */
+  justify-content: space-around; /* works only for non flex children */
+}
+.inner-text2 {
+  flex: 1 1 auto;
+  font-size: 30px;
+  text-align: center; /* horizontal allign relate to span */
+}
+.inner-text-x2 {
+  flex: 1 1 auto;
+  text-align: center; /* horizontal allign relate to span */
+}
+/* end of example 2 */
+
+
+
+
+  /* img centering
+  on parent
+    text-align: center;
+  or on child
+    display: block;
+    margin: auto; */
+
+.outer-img {
+  border: 1px solid goldenrod;
+  text-align: center;
+}
+
+.outer-img img {
+  /* display: block;
+  margin: auto; */
+  max-width: 100%;
+  height: auto;
+  max-height: 50vh;
+}
+
+header, footer {
+  height: 10vh;
+}
+main {
+  height: 80vh;
+  display: flex;
+}
+.left {
+  min-width: 0;
+  flex: 1 1 90%;
+  background-color: blue;
+}
+.right {
+  min-width: 0;
+  flex: 1 1 10%;
+  background-color: red;
+}
