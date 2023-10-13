@@ -10,13 +10,13 @@ Find file by name in home directory -> docs, file starts with 'my'
 find ~/docs -name "my*"
 ```
 
-List files
-
+### List files </br>
+**-l** flag means long listing (with additional info) </br>
+**-la** flag means long listing and show hidden files </br>
 ```
-ls
+ls -la
 ```
 
-List files (long listing, with additional info) </br>
 **-rwr---r-x**
  + **-** - file or </br> **d** - dir
  + **rwx** - owner can read, write and execute
@@ -27,7 +27,7 @@ List files (long listing, with additional info) </br>
 ls -l
 ```
 
-Change permissions </br>
+### Change permissions
 Allow read, write and execute to all categories (user, group, other)
 
 ```
