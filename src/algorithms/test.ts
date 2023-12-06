@@ -9,8 +9,8 @@ export interface Shape {
 }
 
 export abstract class Visitor {
-  abstract visitCircle(): void;
-  abstract visitSquare(): void;
+  abstract visitCircle(x: number): void;
+  abstract visitSquare(x: number): void;
   // universal method to connect shape with visitor
   do(shape: Shape) {
     shape.accept(this);
@@ -18,14 +18,17 @@ export abstract class Visitor {
 }
 
 export class Circle implements Shape {
+  constructor(private x: number) {}
+
   accept(visitor: Visitor) {
-    visitor.visitCircle();
+    visitor.visitCircle(this.x);
   }
 }
 
 export class Square implements Shape {
+  constructor(private x: number) {}
   accept(visitor: Visitor) {
-    visitor.visitSquare();
+    visitor.visitSquare(this.x);
   }
 }
 
@@ -41,16 +44,16 @@ export class Drawer extends Visitor {
 
 // create area calc behaviour for shapes
 export class AreaCalc extends Visitor {
-  visitCircle(): void {
-    console.log('Calc circle area');
+  visitCircle(x: number): void {
+    console.log('Calc circle area', x + x);
   }
-  visitSquare(): void {
-    console.log('Calc square area');
+  visitSquare(x: number): void {
+    console.log('Calc square area', x + x);
   }
 }
 
-const circle = new Circle();
-const square = new Square();
+const circle = new Circle(4);
+const square = new Square(6);
 
 const drawer = new Drawer();
 const areaCalc = new AreaCalc();

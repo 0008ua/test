@@ -352,10 +352,36 @@ nano ~/.ssh/authorized_keys
 ```
 paste from clipboard and save
 
-set permissionsau
+config git
+```bash
+git config --global user.name MyName
+git config --global user.email myemail@dot.com
+nano ~/.ssh/config
+nano ~/.ssh/first_private_key
+nano ~/.ssh/second_private_key
+```
+```
+Host github.com
+	HostName github.com
+	IdentityFile ~/.ssh/first_private_key
+	User MyName
+
+Host github.com-second
+	HostName github.com
+	IdentityFile ~/.ssh/second_private_key
+	User MyName2
+```
+
+set permissions
 ```bash
 chmod 700 ~/.ssh
-chmod 600 ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys ~/.ssh/config ~/.ssh/first_private_key ~/.ssh/second_private_key
+```
+clone apps
+```bash
+cd ~/apps
+git clone git@github.com:Myname/points.git
+git clone git@github.com-second:Myname2/points.git
 ```
 
 disable password auth on server, only by key
@@ -392,6 +418,15 @@ sudo ufw allow http
 sudo ufw allow https
 sudo ufw enable
 ```
+
+**option 1**: Virtual box </br>
+network settings, port forwardings </br>
+| Name | Protocol | Main IP | Main Port | Guest IP | Guest Port |
+|-|-|-|-|-|-|
+| http | TCP | | 8080 | | 80 |
+| ssh | TCP | | 2222 | | 22 |
+
+**option 2**: Vagrant </br>
 update Varantfile and restart service.
 This configuration change will setup port forwarding from port 8080 on the host machine (your computer) to the guest machine (your Vagrant virtual machine) when your virtual machine is running. This will allow you to access your web server using the URL http://localhost:8080
 `config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"`
@@ -415,8 +450,27 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 
 sudo apt-get update
 sudo apt-get install nodejs -y
-
 ```
+
+install nvm
+```bash
+sudo apt-get update
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+```
+relogin and check version
+```bash
+nvm --version
+```
+install node version
+```bash
+nvm install 16.16.0
+nvm install 8.9.4
+```
+use node version
+```bash
+nvm use 8.9.4
+```
+
 install pm2
 ```bash
 sudo npm i -g pm2
@@ -433,12 +487,43 @@ pm2 commands
 sudo pm2 delete
 pm2 start, pm2 stop, pm2 restart, pm2 reload, sudo pm2 ls
 ```
+
+```bash
+nano ~/apps/app1/ecosystem.config.js
+chmod 644 ~/apps/app1/ecosystem.config.js
+
+```
+
+```bash
+sudo pm2 start ~/apps/points/ecosystem.config.js --env production --interpreter=/home/ken/.nvm/v16.16.0/bin/node
+sudo pm2 start ~/apps/grabo/ecosystem.config.js --env production --interpreter=/home/ken/.nvm/v8.9.4/bin/node
+```
+
 restart 0-process(all | 1 | ...) after updating environment variables
 ```bash
 sudo pm2 restart 0 --update-env
 ```
 
+
+
+-----------
 edit nginx file
 ```bash
 sudo nano /etc/nginx/sites-enabled/default
 ```
+restart nginx
+```bash
+sudo service nginx restart
+```
+check nginx status
+```bash
+sudo systemctl status nginx.service
+```
+check nginx config
+```bash
+sudo nginx -t
+```
+
+---
+
+

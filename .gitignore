@@ -3,6 +3,8 @@ security
 
 dist
 
+docs/secret.md
+
 difs/~$Catalogs.xslx
 .idea
 .vscode
