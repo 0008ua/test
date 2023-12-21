@@ -1,2 +1,4 @@
 <ng-content></ng-content>
 <button appMark (click)="onTest()">Test</button>
+<p appMark #markController="mark">Color text</p>
+<button  (click)="markController.changeColor('red')">Change color to red</button>

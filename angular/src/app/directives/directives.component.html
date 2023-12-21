@@ -1,0 +1,9 @@
+<p>directives works!</p>
+<p *appCustomStructural="true; timer: 2000">appCustomStructural</p>
+
+<!-- structural directive under the hood uses ng-template -->
+<ng-template [appCustomLikeStructural]="true">
+  <p>appCustomLikeStructural</p>
+</ng-template>
+
+<p [appCustomAttribute]="'red'">appCustomAttribute</p>

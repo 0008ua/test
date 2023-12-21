@@ -1,10 +1,13 @@
-import { Directive } from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
-  selector: '[appMark]'
+  selector: '[appMark]',
+  exportAs: 'mark',
 })
 export class MarkDirective {
+  @HostBinding('style.color') color= 'blue';
 
-  constructor() { }
-
+  changeColor(color: string): void {
+    this.color = color;
+  }
 }
